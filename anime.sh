@@ -82,7 +82,6 @@ function findanime () {
 
 if [ ! -z "$*" ]
 then
-    pwd
     command=$1
     shift
     $command $*

@@ -17,3 +17,12 @@ function rwmp() {
     echo $URL
     wmp $URL
 }
+
+# If run with arguments, try to execute the arguments as functions.
+# see anime.sh
+if [ ! -z "$*" ]
+then
+    command=$1
+    shift
+    $command $*
+fi

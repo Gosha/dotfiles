@@ -15,3 +15,12 @@ function bpl() {
 function bpl2 () {
     mplayer2  `beegURL $1`
 }
+
+# If run with arguments, try to execute the arguments as functions.
+# see anime.sh
+if [ ! -z "$*" ]
+then
+    command=$1
+    shift
+    $command $*
+fi
