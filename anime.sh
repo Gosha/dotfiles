@@ -4,10 +4,11 @@ function aniplay() {
     # If specified with --ask, zenity is used to ask whether the user wants to mark it as watched
     local ASK
 
-    play=$1
+    local play="$*"
     if [ "$1" == "--ask" ]; then
-        ASK="true"
-        play="$2"
+        local ASK="true"
+        shift
+        local play="$*"
     fi
 
     mplayer2 "$play"
@@ -19,11 +20,11 @@ function aniplay() {
         fi
     fi
 
-    out="1"
+    local out="1"
     while [[ "$out" -eq "1" ]]
     do
         anidb -aw "$play"
-        out=$?
+        local out=$?
         if [[ "$out" -eq "1" ]]
         then
             sleep 10
@@ -35,10 +36,10 @@ function aplay() {
     # Tries to play an episode of an anime by searching for it with findanime
     # If there are several matches zenity is used to show a list of the matches
 
-    list=$( findanime "$1" "$2" )
+    local list=$( findanime "$1" "$2" )
     if (( ("$?" == 0) && $((`echo "$list" | wc -l` > 1)) ))
     then
-        res=$( echo "$list" | zenity --list --column "File" --width 600 --height 700 2> /dev/null )
+        local res=$( echo "$list" | zenity --list --column "File" --width 600 --height 700 2> /dev/null )
         if [ -z "$res" ]; then
             return 1
         fi
@@ -46,7 +47,7 @@ function aplay() {
         echo 'Nothing found!'
         return 1
     else
-        res="$list"
+        local res="$list"
     fi
 
     aniplay --ask "$res"
@@ -55,21 +56,34 @@ function aplay() {
 function findanime () {
     # Creates a list of anime files in ANIME_DIRS that matches name $1 and epno $2
 
-    ANIME_DIRS=( "/home/gosha/anime" "/media/f/Anime" )
+    local ANIME_DIRS=( "$HOME/anime" "/media/f/Anime" )
     local res=
     local tempres=
     for dir in "${ANIME_DIRS[@]}"
     do
         if [[ -d "$dir" ]]
         then
-            tempres=$( find $dir -xtype f | grep -i "$1" | grep -iP "((?<=[- _])|(?<=Ep))0*$2(?=[\[ _v.])" )
+            local tempres=$( find $dir -xtype f | grep -i "$1" | grep -iP "((?<=[- _])|(?<=Ep))0*$2(?=[\[ _v.])" )
             if [ ! -z "$res" ]
             then
-                res=$(echo -e "$res\n$tempres")
+                local res=$(echo -e "$res\n$tempres")
             else
-                res="$tempres"
+                local res="$tempres"
             fi
         fi
     done
     echo "$res"
 }
+
+# If run with arguments, try to execute the arguments as functions.
+# Maybe not very safe, but works with zsh when:
+# DF="$HOME/.dotfiles"
+# alias aplay="bash $DF/anime.sh aplay"
+
+if [ ! -z "$*" ]
+then
+    pwd
+    command=$1
+    shift
+    $command $*
+fi
