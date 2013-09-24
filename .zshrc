@@ -82,3 +82,5 @@ alias findanime='bash $DF/anime.sh findanime'
 alias aniplay='bash $DF/anime.sh aniplay'
 alias ymp='bash $DF/youtube.sh ymp'
 alias bpl='bash $DF/beeg.sh bpl'
+
+PATH="$PATH:/home/gosha/bin"
