@@ -39,7 +39,8 @@ function aplay() {
     local list=$( findanime "$1" "$2" )
     if (( ("$?" == 0) && $((`echo "$list" | wc -l` > 1)) ))
     then
-        local res=$( echo "$list" | zenity --list --column "File" --width 600 --height 700 2> /dev/null )
+        # The separator is required because sometimes zenity decides to return two of the same file
+        local res=$( echo "$list" | zenity --separator @ --list --column "File" --width 600 --height 700 2> /dev/null | cut -d @ -f 1 )
         if [ -z "$res" ]; then
             return 1
         fi
