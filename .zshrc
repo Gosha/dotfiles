@@ -42,7 +42,7 @@ ZSH_THEME="mine"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git cp jump ssh-agent colored-man themes)
 
-HOST=meronpan
+#HOST=meronpan
 
 source $ZSH/oh-my-zsh.sh
 
