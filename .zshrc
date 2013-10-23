@@ -77,6 +77,9 @@ bindkey -e
 
 alias l='ls -lah'
 DF="$HOME/.dotfiles"
+
+source "$DF/copying.sh"
+
 alias aplay="bash $DF/anime.sh aplay"
 alias findanime='bash $DF/anime.sh findanime'
 alias aniplay='bash $DF/anime.sh aniplay'

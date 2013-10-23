@@ -50,13 +50,6 @@ alias cds='cd /home/gosha/Dropbox/Skola/'
 
 which colordiff > /dev/null 2>&1 && alias diff=colordiff
 
-function cpw() { # Copy to web
-    scp $1 besvikel.se:/www/$2
-    echo -n "http://liten.besvikel.se/$2/`basename $1`" | xclip
-}
-function cpwi() { # copy to img
-    cpw $1 img
-}
 
 DF="$HOME/.dotfiles"
 
@@ -65,6 +58,7 @@ source "$DF/youtube.sh"
 source "$DF/wimp.sh"
 source "$DF/beeg.sh"
 source "$DF/gitstat.sh"
+source "$DF/copying.sh"
 
 #PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w ⫸ \[\033[00m\] '
 PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]⫸ \[\e[0m\] '
