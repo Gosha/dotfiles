@@ -66,7 +66,7 @@ function findanime () {
     do
         if [[ -d "$dir" ]]
         then
-            local tempres=$( find $dir -xtype f | grep -i "$1" | grep -iP "((?<=[- _])|(?<=Ep))0*$2(?=[\[ _v.])" )
+            local tempres=$( find $dir -xtype f | grep -i "$1" | grep -iP "((?<=[- _])|(?<=Ep))0*$2(?=[\[ _v.])" | sort )
             if [ ! -z "$res" ]
             then
                 local res=$(echo -e "$res\n$tempres")
