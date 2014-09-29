@@ -1,6 +1,8 @@
 #!/bin/bash
+MEDIA_PLAYER=mpv
+
 function aniplay() {
-    # Plays a file with mplayer and marks as watched with anidb when it's done
+    # Plays a file with MEDIA_PLAYER and marks as watched with anidb when it's done
     # If specified with --ask, zenity is used to ask whether the user wants to mark it as watched
     local ASK
 
@@ -11,7 +13,7 @@ function aniplay() {
         local play="$*"
     fi
 
-    mplayer2 "$play"
+    $MEDIA_PLAYER "$play"
 
     if [ "$ASK" ]; then
         zenity --question --title "aplay" --text "Mark as watched on anidb?"
