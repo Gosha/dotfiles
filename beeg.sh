@@ -7,6 +7,9 @@ function urldecode() {
 function silentmp () {
     mpv --no-terminal $1
 }
+
+function wowgirlsblog_url () {
+    curl -s $1 | grep -Po '(?<="file",").*(?=")'
 }
 
 function beegURL()  {
@@ -15,6 +18,10 @@ function beegURL()  {
 
 function xvideos_url () {
     curl -s $1 | grep -Po "(?<=flv_url=)[^;]*(?=&amp;)" | urldecode
+}
+
+function wpl() {
+    silentmp `wowgirlsblog_url $1`
 }
 
 function xpl() {
