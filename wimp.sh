@@ -5,7 +5,7 @@ function randomWimpOrgURL () {
 }
 
 function wimpOrgFile() {
-    curl $1 -Ls | grep "var googleCode"  | sed "s/.*'\(.*\)';/\1/" | base64 -d | grep -Po '(http://.*)(?="\))'
+    curl $1 -Ls | grep 's1.addVariable("file"' | grep -oP '(?<=",").*(?=")'
 }
 
 function wmp() {
