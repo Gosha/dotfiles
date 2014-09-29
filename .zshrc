@@ -93,3 +93,5 @@ ANDROID_HOME=/home/gosha/android_sdk
 PATH="$PATH:/home/gosha/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
 
 TERM=xterm-256color
+
+EDITOR=ecnw
