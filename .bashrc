@@ -35,9 +35,9 @@ HISTSIZE=2000
 
 PATH="$PATH:/home/gosha/bin"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+##PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+##[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
 
 # Sabayon/Gentoo bash completion
 [[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
