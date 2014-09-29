@@ -60,8 +60,8 @@ source "$DF/beeg.sh"
 source "$DF/gitstat.sh"
 source "$DF/copying.sh"
 
-#PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w ⫸ \[\033[00m\] '
-PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]⫸ \[\e[0m\] '
+#PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w  \[\033[00m\] '
+PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] '
 
 THE_PROMPT="git"
 
@@ -69,13 +69,13 @@ function setPrompt () {
     case "$THE_PROMPT" in
         git)
             GITPROMPT=$(sh ~/gitstat.sh)
-            PS1="\t$GITPROMPT \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]⫸ \[\e[0m\] "
+            PS1="\t$GITPROMPT \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] "
             ;;
         simple)
             PS1="\u@\h \w \$ "
             ;;
         standard)
-            PS1="\t \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]⫸ \[\e[0m\] "
+            PS1="\t \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] "
     esac
 }
 PROMPT_COMMAND=setPrompt
