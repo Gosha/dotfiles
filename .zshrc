@@ -88,3 +88,6 @@ alias ymp='bash $DF/youtube.sh ymp'
 alias bpl='bash $DF/beeg.sh bpl'
 
 PATH="$PATH:/home/gosha/bin"
+
+ANDROID_HOME=/home/gosha/android_sdk
+PATH="$PATH:/home/gosha/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
