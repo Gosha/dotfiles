@@ -20,6 +20,8 @@ function aniplay() {
         if [ $? -ne 0 ]; then
             return 0
         fi
+    else
+        return 0
     fi
 
     local out="1"
