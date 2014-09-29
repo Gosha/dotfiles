@@ -1,7 +1,8 @@
 #!/bin/bash
 
 function silentmp () {
-    mplayer2  -msglevel all=0 -noconsolecontrols $1
+    mpv --no-terminal $1
+}
 }
 
 function beegURL()  {
@@ -9,7 +10,7 @@ function beegURL()  {
 }
 
 function bpl() {
-    silentmp `beegURL $1`
+    silentmp `beegURL $1` &
 }
 
 function bpl2 () {
