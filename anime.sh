@@ -59,7 +59,7 @@ function aplay() {
 function findanime () {
     # Creates a list of anime files in ANIME_DIRS that matches name $1 and epno $2
 
-    local ANIME_DIRS=( "$HOME/anime" "/media/f/Anime" )
+    local ANIME_DIRS=( "$HOME/anime" "/media/c/Users/Gosha/Videos/Anime" "$HOME/cookie/home/gosha/anime" )
     local res=
     local tempres=
     for dir in "${ANIME_DIRS[@]}"
