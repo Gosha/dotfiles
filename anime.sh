@@ -14,7 +14,7 @@ function aniplay() {
     mplayer2 "$play"
 
     if [ "$ASK" ]; then
-        zenity --question --title "Hello" --text "Mark as watched on anidb?"
+        zenity --question --title "aplay" --text "Mark as watched on anidb?"
         if [ $? -ne 0 ]; then
             return 0
         fi
