@@ -50,7 +50,7 @@ source $ZSH/oh-my-zsh.sh
 
 # The following lines were added by compinstall
 
-# zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 # zstyle ':completion:*' completions 1
 # zstyle ':completion:*' format 'Completing %d'
 # zstyle ':completion:*' glob 1
