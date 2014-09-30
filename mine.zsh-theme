@@ -1,3 +1,5 @@
+# Pretty much pargs of the agnoster theme with a few changes
+
 autoload -U colors && colors
 
 autoload -Uz vcs_info
@@ -70,12 +72,28 @@ prompt_virtualenv() {
   fi
 }
 
+# Status:
+# - was there an error
+# - am I root
+# - are there background jobs?
+prompt_status() {
+  local symbols
+  symbols=()
+  [[ $RETVAL -ne 0 ]] && symbols+="%F{red}✘%f"
+  [[ $UID -eq 0 ]] && symbols+="%F{yellow}⚡%f"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%F{cyan}⚙%f"
+
+  [[ -n "$symbols" ]] && echo -n "$symbols"
+}
+
 prompt_dir() {
     prompt_segment cyan black "%~"
 }
 
 VIRTUAL_ENV_DISABLE_PROMPT=1
 build_prompt() {
+    RETVAL=$?
+    prompt_status
     prompt_date
     prompt_virtualenv
     prompt_git
