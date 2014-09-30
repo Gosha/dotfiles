@@ -65,17 +65,26 @@ PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] '
 
 THE_PROMPT="git"
 
+function prompt_virtualenv() {
+  local virtualenv_path="$VIRTUAL_ENV"
+  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
+    echo " (`basename $virtualenv_path`)"
+  fi
+}
+
 function setPrompt () {
     case "$THE_PROMPT" in
         git)
             GITPROMPT=$(sh ~/gitstat.sh)
-            PS1="\t$GITPROMPT \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] "
+            VENVPROMPT=$(prompt_virtualenv)
+            VIRTUAL_ENV_DISABLE_PROMPT=1
+            PS1="\t$VENVPROMPT$GITPROMPT \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]\[\e[0m\] "
             ;;
         simple)
             PS1="\u@\h \w \$ "
             ;;
         standard)
-            PS1="\t \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] "
+            PS1="\t \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]\[\e[0m\] "
     esac
 }
 PROMPT_COMMAND=setPrompt
