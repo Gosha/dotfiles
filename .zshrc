@@ -82,11 +82,14 @@ DF="$HOME/.dotfiles"
 
 source "$DF/copying.sh"
 
-alias aplay="bash $DF/anime.sh aplay"
-alias findanime='bash $DF/anime.sh findanime'
-alias aniplay='bash $DF/anime.sh aniplay'
-alias ymp='bash $DF/youtube.sh ymp'
-alias bpl='bash $DF/beeg.sh bpl'
+# Scripts folder
+SF="$HOME/scripts"
+alias aplay="bash $SF/anime.sh aplay"
+alias findanime='bash $SF/anime.sh findanime'
+alias aniplay='bash $SF/anime.sh aniplay'
+alias ymp='bash $SF/youtube.sh ymp'
+alias bpl='bash $SF/beeg.sh bpl'
+PATH="$PATH:$SF"
 
 PATH="$PATH:/home/gosha/bin"
 
