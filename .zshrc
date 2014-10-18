@@ -90,7 +90,7 @@ alias bpl='bash $DF/beeg.sh bpl'
 
 PATH="$PATH:/home/gosha/bin"
 
-ANDROID_HOME=/home/gosha/android_sdk
+export ANDROID_HOME=/home/gosha/android_sdk
 PATH="$PATH:/home/gosha/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
 
 TERM=xterm-256color
