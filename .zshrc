@@ -93,6 +93,15 @@ PATH="$PATH:$SF"
 
 PATH="$PATH:/home/gosha/bin"
 
+function E() {
+    filename=$1
+    without_beg_slash="${1##/}"
+    if [[ $without_beg_slash == $1 ]];then
+        filename="${PWD%//}/$1"
+    fi
+    emacsclient -a emacs "/sudo:root@localhost:$filename"
+}
+
 export ANDROID_HOME=/home/gosha/android_sdk
 PATH="$PATH:/home/gosha/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
 
