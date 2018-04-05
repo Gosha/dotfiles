@@ -90,18 +90,18 @@ function setPrompt () {
 PROMPT_COMMAND=setPrompt
 
 # Some random auto ssh-agent script found on the internet.
-GREP=/bin/grep
-test=`/bin/ps -ef | $GREP ssh-agent | $GREP -v grep | /usr/bin/awk '{print $2}' | xargs`
-
-if [ "$test" = "" ]; then
-   # there is no agent running
-   if [ -e "$HOME/agent.sh" ]; then
-      # remove the old file
-      /bin/rm -f $HOME/agent.sh
-   fi;
-   # start a new agent
-   /usr/bin/ssh-agent | $GREP -v echo >&$HOME/agent.sh
-fi;
+# GREP=/bin/grep
+# test=`/bin/ps -ef | $GREP ssh-agent | $GREP -v grep | /usr/bin/awk '{print $2}' | xargs`
+#
+# if [ "$test" = "" ]; then
+#    # there is no agent running
+#    if [ -e "$HOME/agent.sh" ]; then
+#       # remove the old file
+#       /bin/rm -f $HOME/agent.sh
+#    fi;
+#    # start a new agent
+#    /usr/bin/ssh-agent | $GREP -v echo >&$HOME/agent.sh
+# fi;
 
 test -e $HOME/agent.sh && source $HOME/agent.sh
 
