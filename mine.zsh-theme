@@ -10,8 +10,10 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{11}%r'
 zstyle ':vcs_info:*' enable git svn
 
-if [[ $HOST -eq "meronpan" ]] {
+if [[ "$HOST" == "meronpan" ]] {
    BGC=cyan
+} elif [[ "$HOST" == "Goshas-MBP.lan" ]] {
+   BGC=yellow
 } else {
    BGC=blue
 }
@@ -31,10 +33,11 @@ prompt_segment() {
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
-  export CURRENT_BG=$1
+  CURRENT_BG=$1
   [[ -n $3 ]] && echo -n $3
 }
 
+# End the prompt, closing any open segments
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
     echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
@@ -87,7 +90,7 @@ prompt_status() {
 }
 
 prompt_dir() {
-    prompt_segment cyan black "%~"
+    prompt_segment $BGC black "%~"
 }
 
 VIRTUAL_ENV_DISABLE_PROMPT=1
