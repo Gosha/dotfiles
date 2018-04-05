@@ -76,7 +76,7 @@ prompt_docker() {
 }
 
 prompt_date() {
-    prompt_segment 0 white "%D{%H:%M:%S}"
+    prompt_segment 0 "" "%D{%H:%M:%S}"
 }
 
 prompt_git() {
