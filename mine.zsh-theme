@@ -62,9 +62,9 @@ prompt_end() {
 
 theme_precmd () {
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        zstyle ':vcs_info:*' formats "%b%c%u"
+        zstyle ':vcs_info:*' formats "%b %c%u"
     } else {
-        zstyle ':vcs_info:*' formats "%b%c%u%F{red}●"
+        zstyle ':vcs_info:*' formats "%b %c%u%F{red}●"
     }
     vcs_info
 }
