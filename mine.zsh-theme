@@ -81,7 +81,8 @@ prompt_date() {
 
 prompt_git() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-      prompt_segment 8 white "${vcs_info_msg_0_}"
+      PL_BRANCH_CHAR=$'\ue0a0' # 
+      prompt_segment 8 white "${PL_BRANCH_CHAR} ${vcs_info_msg_0_}"
   fi
 }
 
