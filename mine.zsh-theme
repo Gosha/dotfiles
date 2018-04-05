@@ -69,6 +69,12 @@ theme_precmd () {
     vcs_info
 }
 
+prompt_docker() {
+  if [[ ! -z $DOCKER_MACHINE_NAME ]] {
+    prompt_segment green white $DOCKER_MACHINE_NAME
+  }
+}
+
 prompt_date() {
     prompt_segment 0 white "%D{%H:%M:%S}"
 }
@@ -112,6 +118,7 @@ build_prompt() {
     prompt_date
     prompt_virtualenv
     prompt_git
+    prompt_docker
     prompt_dir
     prompt_end
 }
