@@ -2,7 +2,7 @@ Green="\033[0;32m"        # Green
 Red="\033[0;31m"          # Red
 Color_Off="\033[0m"       # Text Reset
 
-function git_current_branch() {
+function git_current_branch () {
     git symbolic-ref HEAD 2>/dev/null | awk -F/ '{print $3;}';
 }
 

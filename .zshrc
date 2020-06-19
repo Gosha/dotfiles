@@ -1,3 +1,8 @@
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+
+
+export DF="$( cd "$( dirname "${(%):-%x}" )" >/dev/null 2>&1 && pwd )"
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -5,15 +10,8 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_CUSTOM=~/.dotfiles
+ZSH_CUSTOM=$DF/.dotfiles-aux
 ZSH_THEME="mine"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -40,58 +38,36 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git cp jump colored-man themes rvm)
-
-#HOST=meronpan
+plugins=(
+    git
+    # colored-man-pages # This seems to be the default on most systems
+    cp
+    jump
+    themes
+)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-
 # The following lines were added by compinstall
-
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-# zstyle ':completion:*' completions 1
-# zstyle ':completion:*' format 'Completing %d'
-# zstyle ':completion:*' glob 1
-# zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=** r:|=**' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
-# zstyle ':completion:*' max-errors 2 numeric
-# zstyle ':completion:*' preserve-prefix '//[^/]##/'
-# zstyle ':completion:*' prompt '%e <<<'
-# zstyle ':completion:*' substitute 1
-# zstyle :compinstall filename '/home/gosha/.zshrc'
-
-# autoload -Uz compinit
-# compinit
 # End of lines added by compinstall
 
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=2000
-SAVEHIST=2000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt appendhistory beep extendedglob nomatch notify
 setopt nullglob
 unsetopt autocd
 bindkey -e
-# End of lines configured by zsh-newuser-install
 
-alias l='ls -lah'
-DF="$HOME/.dotfiles"
-
-source "$DF/copying.sh"
-
-# Scripts folder
-SF="$HOME/scripts"
-alias aplay="bash $SF/anime.sh aplay"
-alias findanime='bash $SF/anime.sh findanime'
-alias aniplay='bash $SF/anime.sh aniplay'
-alias ymp='bash $SF/youtube.sh ymp'
-alias bpl='bash $SF/beeg.sh bpl'
-PATH="$PATH:$SF"
-
-PATH="$PATH:/home/gosha/bin"
+if type exa > /dev/null; then
+    alias l='exa -la --git'
+    alias lt='exa -T'
+else
+    alias l='ls -lah'
+    alias lt='tree .'
+fi
 
 function E() {
     filename=$1
@@ -102,12 +78,8 @@ function E() {
     emacsclient -a emacs "/sudo:root@localhost:$filename"
 }
 
-export ANDROID_HOME=/home/gosha/android_sdk
-PATH="$PATH:/home/gosha/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/tools"
-
 TERM=xterm-256color
 
-#EDITOR=ecnw
-
-##PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-##[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+# Allow overiding settings on current machine
+[[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
+[[ -f $HOME/.this-zshrc ]] && source $HOME/.this-zshrc
