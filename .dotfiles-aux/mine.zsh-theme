@@ -14,6 +14,8 @@ if [[ "$HOST" == "meronpan" ]] {
    BGC=cyan
 } elif [[ "$HOST" == "Goshas-MBP.lan" ]] {
    BGC=yellow
+} elif [[ "$WSL_DISTRO_NAME" =~ "Ubuntu" ]] {
+   BGC=166 # Ubuntu-ish color
 } else {
    BGC=blue
 }
