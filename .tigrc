@@ -1,0 +1,22 @@
+set line-graphics = utf-8
+set blame-options = -C -C -C  # Blame lines from other files
+set tab-size = 2
+set mailmap = true
+
+set refresh-mode = periodic
+set refresh-interval = 3
+
+# Main view
+set main-view-id = yes
+set main-view-date = custom
+set main-view-date-format = "%m/%d %H:%M"
+
+set reference-format = {remote} branch
+
+bind generic <Ctrl-S> :source ~/.tigrc
+bind main <Ctrl-F> !git fetch
+bind main <Ctrl-A> ?@sh -c "git rem %(branch)"
+bind refs <Ctrl-A> @sh -c "git rem %(branch)"
+
+
+color cursor  default color234
