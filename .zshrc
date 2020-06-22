@@ -80,6 +80,13 @@ function E() {
 
 TERM=xterm-256color
 
+# fzf-completion when installed with nix
+# See: https://nixos.wiki/wiki/Fzf
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+
 # Allow overiding settings on current machine
 [[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
 [[ -f $HOME/.this-zshrc ]] && source $HOME/.this-zshrc
