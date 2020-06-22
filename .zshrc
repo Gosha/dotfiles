@@ -87,6 +87,12 @@ if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/completion.zsh"
 fi
 
+# fzf-completion when installed without nix
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Restore Ctrl-T
+bindkey "^T" transpose-chars
+bindkey '^F' fzf-file-widget
+
 # Allow overiding settings on current machine
 [[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
 [[ -f $HOME/.this-zshrc ]] && source $HOME/.this-zshrc

@@ -73,6 +73,8 @@ function setup-oh-my-zsh {
   chsh -s $ZSH_PATH
 }
 
+# Set up ctrl-r with fzf for bash (without nix)
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Allow overiding settings on current machine
 [[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
