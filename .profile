@@ -8,5 +8,5 @@ export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 alias gs='git status'
 
 function config {
-   /usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME "$@"
+   git --git-dir=$HOME/.cfg/ --work-tree=$HOME "$@"
 }
