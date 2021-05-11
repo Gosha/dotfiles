@@ -94,6 +94,21 @@ fi
 bindkey "^T" transpose-chars
 bindkey '^F' fzf-file-widget
 
+# fbd - delete git branch (including remote branches)
+fbd() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(
+    echo "$branches" | \
+    fzf --multi \
+      --cycle \
+      --preview-window=right:70% \
+      --header="Select branches to delete" \
+      --preview "git log -20 --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit {}"
+  ) &&
+  git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
 # Allow overiding settings on current machine
 [[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
 [[ -f $HOME/.this-zshrc ]] && source $HOME/.this-zshrc
