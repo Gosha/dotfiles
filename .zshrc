@@ -44,6 +44,7 @@ plugins=(
     cp
     jump
     themes
+    zsh-z
 )
 
 source $ZSH/oh-my-zsh.sh
