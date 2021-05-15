@@ -109,6 +109,28 @@ fbd() {
   git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
+# Insert file paths chosen with ranger
+# Default bound to <c-p>
+# If cursor is on a file, press either <enter> or <a-enter> to finish
+# If cursor is on a directory, press <a-enter> to finish
+ranger-insert-files-widget () {
+  local tmpfile=$(mktemp)
+  ranger --choosefiles=${tmpfile} --cmd "map <a-enter> execute_file a" < $TTY
+  local files=$(cat $tmpfile | while read line
+    do
+      local item=$(realpath --no-symlinks --relative-to=$(pwd) "${line}")
+      echo -n "${(q)item} "
+    done
+  )
+  LBUFFER="${LBUFFER}${files}"
+  local ret=$?
+  rm $tmpfile
+  zle reset-prompt
+  return $ret
+}
+zle -N ranger-insert-files-widget
+bindkey '^P' ranger-insert-files-widget
+
 # Allow overiding settings on current machine
 [[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
 [[ -f $HOME/.this-zshrc ]] && source $HOME/.this-zshrc
