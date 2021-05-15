@@ -126,7 +126,7 @@ build_prompt() {
     prompt_end
 }
 
-PROMPT='%{%f%b%k%}$(build_prompt) '
+PROMPT=$'%{%f%b%k%}$(build_prompt)%-30(l::\n$) '
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
