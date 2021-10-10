@@ -84,6 +84,7 @@ TERM=xterm-256color
 # fzf-completion when installed with nix
 # See: https://nixos.wiki/wiki/Fzf
 if [ -n "${commands[fzf-share]}" ]; then
+  local LC_ALL=
   source "$(fzf-share)/key-bindings.zsh"
   source "$(fzf-share)/completion.zsh"
 fi
