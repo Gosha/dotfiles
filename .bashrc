@@ -41,7 +41,7 @@ function prompt_virtualenv() {
 function setPrompt () {
     case "$THE_PROMPT" in
         git)
-            GITPROMPT=$(bash $DF/.dotfiles-aux/gitstat.sh)
+            GITPROMPT=$(bash $HOME/.dotfiles-aux/gitstat.sh)
             VENVPROMPT=$(prompt_virtualenv)
             VIRTUAL_ENV_DISABLE_PROMPT=1
             PS1="\t$VENVPROMPT$GITPROMPT \[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\]\[\e[0m\] "
