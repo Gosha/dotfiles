@@ -40,11 +40,14 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
     git
+    git-escape-magic
     # colored-man-pages # This seems to be the default on most systems
     cp
     jump
     themes
     zsh-z
+    zsh-navigation-tools
+    direnv
 )
 
 source $ZSH/oh-my-zsh.sh
