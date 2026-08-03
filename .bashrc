@@ -15,13 +15,19 @@ fi
 
 export DF="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-HISTCONTROL=ignoredups # Don't save identical items in history
 HISTSIZE=10000
 SAVEHIST=10000
 # Avoid duplicates
 HISTCONTROL=ignoredups:erasedups
 # When the shell exits, append to the history file instead of overwriting it
 shopt -s histappend
+# Save multi-line commands as a single history entry
+shopt -s cmdhist
+# Force multi-line commands to save with embedded newlines
+shopt -s lithist
+
+# After each command, append to the history file and reread it
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Sabayon/Gentoo bash completion
 [[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
