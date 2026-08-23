@@ -29,9 +29,6 @@ shopt -s lithist
 # After each command, append to the history file and reread it
 PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
-# Sabayon/Gentoo bash completion
-[[ -f /etc/profile.d/bash-completion.sh ]] && source /etc/profile.d/bash-completion.sh
-
 #PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w  \[\033[00m\] '
 PS1='`date +%H:%M:%S`\[\e[0;30m\e[42m\] \w \[\033[00m\e[0;32m\] \[\e[0m\] '
 
@@ -84,4 +81,5 @@ function setup-oh-my-zsh {
 
 # Allow overiding settings on current machine
 [[ -f $HOME/.commonrc ]] && source $HOME/.commonrc
+# .this-bashrc: machine-specific config (not synced) — tools/paths that only exist on this box
 [[ -f $HOME/.this-bashrc ]] && source $HOME/.this-bashrc
