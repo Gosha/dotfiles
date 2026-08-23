@@ -57,7 +57,7 @@ function setPrompt () {
     esac
 }
 
-PROMPT_COMMAND=setPrompt
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}setPrompt"
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
