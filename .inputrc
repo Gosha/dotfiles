@@ -1,0 +1,6 @@
+# Keep the system defaults; readline skips /etc/inputrc once ~/.inputrc exists
+$include /etc/inputrc
+
+# Smarter Ctrl-W, from ~/.dotfiles-aux/smartword (loaded in .bashrc).
+# Where it isn't loaded this line is ignored and Ctrl-W works as usual.
+"\C-w": smart-word-rubout

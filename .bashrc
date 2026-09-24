@@ -13,6 +13,11 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
+# Smarter Ctrl-W (see ~/.dotfiles-aux/smartword and ~/.inputrc). Built by
+# home-manager, or `make install` there. Must load before anything calls
+# `bind` (e.g. fzf), since that reads ~/.inputrc.
+[[ -f $HOME/.local/lib/smartword.so ]] && enable -f "$HOME/.local/lib/smartword.so" smartword 2>/dev/null
+
 export DF="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 HISTSIZE=10000
